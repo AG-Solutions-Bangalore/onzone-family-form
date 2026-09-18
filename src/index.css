@@ -1,0 +1,433 @@
+@import "tailwindcss";
+
+/* next-themes uses `.dark` class on <html>. Enable class-based dark variant for Tailwind v4. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/*  Theme primitives -> Tailwind utilities (bg-background, text-       */
+/*  foreground, bg-card, border-border, bg-primary, etc.)              */
+/* ------------------------------------------------------------------ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand primitives */
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-cream: var(--cream);
+  --color-cream-card: var(--cream-card);
+  --color-ink: var(--ink);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+
+  --font-serif: var(--serif);
+  --font-sans: var(--sans);
+  --font-mono: var(--mono);
+  --font-script: var(--script);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Light theme (default) — warm cream luxury                          */
+/* ------------------------------------------------------------------ */
+:root {
+  --radius: 0.625rem;
+
+  --background: #fdfaf5;
+  --foreground: #2b2820;
+
+  --card: #fffdf8;
+  --card-foreground: #2b2820;
+
+  --popover: #fffdf8;
+  --popover-foreground: #2b2820;
+
+  --primary: #0e1a30;
+  --primary-foreground: #f1eae0;
+
+  --secondary: #e8e1d5;
+  --secondary-foreground: #2b2820;
+
+  --muted: #ede6d8;
+  --muted-foreground: #6b665a;
+
+  --accent: #c6963f;
+  --accent-foreground: #0e1a30;
+
+  --destructive: #b3261e;
+  --destructive-foreground: #fdfaf5;
+
+  --border: rgba(14, 26, 48, 0.12);
+  --input: rgba(14, 26, 48, 0.16);
+  --ring: #c6963f;
+
+  /* Brand (kept for backward-compat) */
+  --navy: #0e1a30;
+  --navy-soft: #16233d;
+  --cream: #f1eae0;
+  --cream-card: #e8e1d5;
+  --white: #fdfaf5;
+  --ink: #2b2820;
+  --muted-brand: #6b665a;
+  --gold: #c6963f;
+  --gold-dark: #a87b31;
+  --line: rgba(14, 26, 48, 0.12);
+  --line-on-dark: rgba(255, 255, 255, 0.14);
+
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --script: 'Great Vibes', cursive;
+
+  color-scheme: light;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Dark theme — deep navy luxury (toggled by next-themes `.dark`)     */
+/* ------------------------------------------------------------------ */
+.dark {
+  --background: #0e1a30;
+  --foreground: #f1eae0;
+
+  --card: #16233d;
+  --card-foreground: #f1eae0;
+
+  --popover: #16233d;
+  --popover-foreground: #f1eae0;
+
+  --primary: #c6963f;
+  --primary-foreground: #0e1a30;
+
+  --secondary: #223354;
+  --secondary-foreground: #f1eae0;
+
+  --muted: #1a2946;
+  --muted-foreground: #a8a094;
+
+  --accent: #c6963f;
+  --accent-foreground: #0e1a30;
+
+  --destructive: #e57373;
+  --destructive-foreground: #0e1a30;
+
+  --border: rgba(255, 255, 255, 0.14);
+  --input: rgba(255, 255, 255, 0.18);
+  --ring: #c6963f;
+
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--sans);
+    color: var(--foreground);
+    background-color: var(--background);
+    overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-serif-luxury {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-style: normal;
+    text-transform: none;
+  }
+
+  .font-script {
+    font-family: var(--script);
+    font-weight: 400;
+    font-style: normal;
+    text-transform: none;
+  }
+
+  .font-mono-accent {
+    font-family: var(--mono);
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [role='button']:disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* Custom Scrollbar (theme-aware) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* Luxury visual utility classes (kept + theme-aware aliases) */
+.bg-cream-light {
+  background-color: var(--cream);
+}
+.dark .bg-cream-light {
+  background-color: var(--navy);
+}
+
+.bg-cream-card {
+  background-color: var(--cream-card);
+}
+.dark .bg-cream-card {
+  background-color: var(--navy-soft);
+}
+
+.bg-navy-dark {
+  background-color: var(--navy);
+}
+
+.bg-navy-card {
+  background-color: var(--navy-soft);
+}
+
+.text-gold-accent {
+  color: var(--gold);
+}
+.text-gold-dark {
+  color: var(--gold-dark);
+}
+.dark .text-gold-dark {
+  color: var(--gold);
+}
+
+.border-gold-accent {
+  border-color: var(--gold);
+}
+.bg-gold-accent {
+  background-color: var(--gold);
+}
+
+/* Eyebrow styling inspired by prompt */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+.dark .eyebrow {
+  color: var(--gold);
+}
+.eyebrow.on-dark {
+  color: var(--gold);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .marquee-dup {
+    display: none;
+  }
+}
+
+/* Custom Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(198, 150, 63, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(198, 150, 63, 0);
+  }
+}
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-fade-in-left {
+  animation: fadeInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-fade-in-right {
+  animation: fadeInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+.animate-scroll-bounce {
+  animation: scrollBounce 1.6s ease-in-out infinite;
+}
+
+/* Auto shine sweep for primary buttons (e.g. form submit). */
+@keyframes btnShine {
+  0% {
+    transform: translateX(-160%) skewX(-20deg);
+  }
+  55%,
+  100% {
+    transform: translateX(280%) skewX(-20deg);
+  }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: translateX(-160%) skewX(-20deg);
+  animation: btnShine 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.btn-shine:disabled::after {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-shine::after {
+    animation: none;
+  }
+}
+
+.backdrop-glass {
+  background: rgba(241, 234, 224, 0.88);
+  backdrop-filter: blur(12px);
+}
+.dark .backdrop-glass {
+  background: rgba(14, 26, 48, 0.88);
+}
+.backdrop-glass-dark {
+  background: rgba(14, 26, 48, 0.88);
+  backdrop-filter: blur(12px);
+}
