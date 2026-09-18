@@ -51,7 +51,8 @@ export const DetailsForm: FC = () => {
     <div className="w-full max-w-[420px] rounded-[28px] border border-white/80 bg-[#fffdf6]/85 p-[7px] shadow-[0_25px_65px_-15px_rgba(58,28,8,0.45)] backdrop-blur-xl sm:max-w-[430px] lg:w-[400px] lg:shrink-0 xl:w-[435px]">
       <div className="flex flex-col rounded-[22px] border border-[#f0e3cd]/90 bg-[#fffaf0] px-5 py-4 shadow-inner sm:px-6 sm:py-5 xl:px-7 xl:py-6">
         <div className="select-none text-center">
-          <div className="mx-auto h-px w-[68px] bg-[#8b6a3e]/80" />
+          <img src="/logo.svg" alt="House of Onzone" className="mx-auto h-9 w-auto sm:h-10" />
+          <div className="mx-auto mt-2.5 h-px w-[68px] bg-[#8b6a3e]/80" />
           <h2 className="mt-2 font-serif text-[30px] font-bold leading-[1.05] tracking-tight text-[#141210] sm:text-[33px] xl:text-[36px]">
             Share Your Details
           </h2>
