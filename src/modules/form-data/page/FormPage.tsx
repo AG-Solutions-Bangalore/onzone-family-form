@@ -151,9 +151,9 @@ export const FormPage: FC = () => {
                 {/* Photo with clean dark studio backdrop + warm grade so he looks nice */}
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[3px] bg-[#1c1c1c]">
                   <img
-                    src="/man-polaroid.png"
+                    src="/man-polaroid.jpeg"
                     alt="Nayansh smiling"
-                    className="h-full w-full object-cover object-top"
+                    className="h-full w-full scale-125 object-cover object-top"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2a1408]/45 via-transparent to-transparent" />
                 </div>
