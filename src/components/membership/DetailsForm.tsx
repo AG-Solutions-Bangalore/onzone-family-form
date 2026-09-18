@@ -8,7 +8,6 @@ import { DatePicker } from '@/components/ui/date-picker';
 import { useCreateFormData } from '@/modules/form-data/hooks/use-create-form-data';
 import { FORM_DATA_DEFAULTS, type FormDataFormValues } from '@/modules/form-data/types/form-data.types';
 
-/** Mobile validation: allows only 10 to 12 digits (supports +91 format). */
 function validateIndianMobile(value: string): string | true {
   const clean = value.replace(/\D/g, '');
   if (!clean || clean.length < 10 || clean.length > 12) {
@@ -18,10 +17,6 @@ function validateIndianMobile(value: string): string | true {
 }
 
 export const DetailsForm: FC = () => {
-  // Bumped after every successful submit so the whole form remounts.
-  // Fresh mount always re-attaches input refs, which re-registers every
-  // field (with its rules) into React Hook Form — this keeps submit-time
-  // validation working no matter how renders get memoized.
   const [formKey, setFormKey] = useState(0);
   const {
     register,
@@ -53,27 +48,20 @@ export const DetailsForm: FC = () => {
   };
 
   return (
-    <div className="relative w-full max-w-[390px] sm:max-w-[420px] lg:max-w-[390px] xl:max-w-[420px] rounded-[28px] sm:rounded-[32px] bg-white/40 dark:bg-white/10 p-2 sm:p-2.5 backdrop-blur-xl border border-white/70 dark:border-white/15 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.2)]">
-      {/* Inner Frosted Cream Card */}
-      <div className="relative rounded-[22px] sm:rounded-[26px] bg-[#fcfaf6]/94 dark:bg-[#16233d]/94 p-5 sm:p-6 lg:p-6 border border-[#ede6dc]/90 dark:border-white/10 shadow-inner flex flex-col">
-        {/* Form Title */}
-        <h2 className="font-serif text-[26px] sm:text-[30px] font-normal leading-tight tracking-tight text-[#171513] dark:text-[#f7f3ec]">
-          Your Details
-        </h2>
+    <div className="w-full max-w-[420px] rounded-[28px] border border-white/80 bg-[#fffdf6]/85 p-[7px] shadow-[0_25px_65px_-15px_rgba(58,28,8,0.45)] backdrop-blur-xl sm:max-w-[430px] lg:w-[400px] lg:shrink-0 xl:w-[435px]">
+      <div className="flex flex-col rounded-[22px] border border-[#f0e3cd]/90 bg-[#fffaf0] px-5 py-4 shadow-inner sm:px-6 sm:py-5 xl:px-7 xl:py-6">
+        <div className="select-none text-center">
+          <div className="mx-auto h-px w-[68px] bg-[#8b6a3e]/80" />
+          <h2 className="mt-2 font-serif text-[30px] font-bold leading-[1.05] tracking-tight text-[#141210] sm:text-[33px] xl:text-[36px]">
+            Share Your Details
+          </h2>
+          <p className="mt-1 font-serif text-[14px] text-[#2e2a24] sm:text-[15px]">
+            Help me keep my family diary updated.
+          </p>
+          <div className="mx-auto mt-2 h-px w-[68px] bg-[#8b6a3e]/80" />
+        </div>
 
-        {/* Subtitle */}
-        <p className="mt-0.5 text-[11px] sm:text-[12px] text-[#736d63] dark:text-[#a8a094] font-normal leading-tight">
-          Please provide the following information to stay in touch.
-        </p>
-
-        {/* Form Interactive Fields */}
-        <form
-          key={formKey}
-          onSubmit={(e) => void handleSubmit(onSubmit)(e)}
-          noValidate
-          className="mt-3.5 sm:mt-4 space-y-2 sm:space-y-5"
-        >
-          {/* 1. Full Name */}
+        <form key={formKey} onSubmit={(e) => void handleSubmit(onSubmit)(e)} noValidate className="mt-3.5 space-y-2.5">
           <FormField
             id="field-full-name"
             label="Full Name"
@@ -87,7 +75,6 @@ export const DetailsForm: FC = () => {
             })}
           />
 
-          {/* 2. Mobile Number */}
           <FormField
             id="field-mobile-no"
             label="Mobile Number"
@@ -102,13 +89,12 @@ export const DetailsForm: FC = () => {
             })}
           />
 
-          {/* 3. Email Address */}
           <FormField
             id="field-email-id"
             label="Email Address"
             icon={Mail}
             type="email"
-            placeholder="you@exemple.com"
+            placeholder="you@example.com"
             autoComplete="email"
             error={errors.email_id?.message}
             {...register('email_id', {
@@ -119,7 +105,6 @@ export const DetailsForm: FC = () => {
             })}
           />
 
-          {/* 4. Date of Birth */}
           <Controller
             name="dob"
             control={control}
@@ -137,7 +122,6 @@ export const DetailsForm: FC = () => {
             )}
           />
 
-          {/* 5. Date of Anniversary */}
           <Controller
             name="doa"
             control={control}
@@ -155,24 +139,24 @@ export const DetailsForm: FC = () => {
             )}
           />
 
-          {/* Continue Button */}
-          <button
-            type="submit"
-            disabled={isSubmitDisabled}
-            className="group btn-shine mt-3.5 sm:mt-4 flex h-[44px] sm:h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#181615] hover:bg-[#2a2622] text-[#f7f3ec] shadow-md transition-all duration-300 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
-          >
-            <span className="font-serif text-[15px] sm:text-[16px] font-normal italic tracking-wide">
-              {createFormData.isPending ? 'Submitting…' : 'Continue'}
-            </span>
-            {!createFormData.isPending && (
-              <ArrowRight
-                className="h-4 w-4 stroke-[1.6] transition-transform duration-300 group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            )}
-          </button>
+          <div className="pt-1">
+            <button
+              type="submit"
+              disabled={isSubmitDisabled}
+              className="group btn-shine flex h-[50px] xl:h-[52px] w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#442211] via-[#542a15] to-[#36170a] text-[#fff6e8] shadow-[0_14px_30px_-10px_rgba(54,23,10,0.7)] transition-all duration-300 hover:brightness-110 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <span className="font-serif text-[18px] xl:text-[19px] font-medium tracking-wide">
+                {createFormData.isPending ? 'Submitting…' : 'Submit Details'}
+              </span>
+              {!createFormData.isPending && (
+                <ArrowRight
+                  className="h-5 w-5 stroke-[1.8] transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              )}
+            </button>
+          </div>
 
-          {/* Privacy Footnote */}
           <PrivacyNote />
         </form>
       </div>

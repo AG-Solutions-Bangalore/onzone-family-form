@@ -19,23 +19,23 @@ export const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
       <div className="w-full">
         <div
           className={cn(
-            'group relative flex h-[50px] sm:h-[52px] items-center gap-3 rounded-xl border bg-white/70 dark:bg-[#1f2d47]/70 px-3.5 py-1.5 transition-all duration-200 backdrop-blur-sm shadow-xs',
+            'group relative flex h-[50px] sm:h-[52px] items-center gap-2.5 sm:gap-3 rounded-[12px] border bg-white/95 px-3 py-1.5 transition-all duration-200 shadow-[0_2px_8px_rgba(100,70,40,0.04)]',
             error
               ? 'border-destructive/80 ring-1 ring-destructive/40'
-              : 'border-[#ded8ce] dark:border-white/10 hover:border-[#c5a46d]/60 focus-within:border-[#8b6a3e] focus-within:ring-2 focus-within:ring-[#8b6a3e]/15',
+              : 'border-[#e8dcc8] hover:border-[#c49a60] focus-within:border-[#8b5a2b] focus-within:ring-2 focus-within:ring-[#8b5a2b]/15',
             className,
           )}
         >
-          {/* Left: Square Icon Container (compact 34-36px square) */}
-          <div className="flex h-8 w-8 sm:h-[34px] sm:w-[34px] shrink-0 items-center justify-center rounded-lg bg-[#f5efe4] dark:bg-[#16233d] text-[#171513] dark:text-[#f7f3ec] transition-transform duration-200 group-hover:scale-105">
-            <Icon className="h-4 w-4 stroke-[1.5] opacity-80" aria-hidden="true" />
+          {/* Left icon tile */}
+          <div className="flex h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] shrink-0 items-center justify-center rounded-[8px] bg-[#f4ebe0] text-[#221b14] transition-transform duration-200 group-hover:scale-105">
+            <Icon className="h-[17px] w-[17px] sm:h-[18px] sm:w-[18px]" strokeWidth={1.9} aria-hidden="true" />
           </div>
 
-          {/* Right: Label + Input or Custom Trigger (e.g. DatePicker) */}
+          {/* Label + input */}
           <div className="flex flex-1 flex-col justify-center min-w-0 text-left overflow-hidden">
             <label
               htmlFor={id}
-              className="text-[11px] sm:text-[12px] font-semibold text-[#161616] dark:text-[#f7f3ec] leading-none mb-0.5 select-none cursor-pointer truncate"
+              className="text-[11px] font-semibold text-[#181613] leading-none mb-[2px] select-none cursor-pointer truncate"
             >
               {label}
             </label>
@@ -50,16 +50,15 @@ export const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
                 placeholder={placeholder}
                 aria-invalid={error ? 'true' : 'false'}
                 aria-describedby={errorId}
-                className="w-full bg-transparent p-0 text-xs sm:text-[13px] text-[#161616] dark:text-[#f7f3ec] placeholder:text-[#858585] dark:placeholder:text-[#8c857b] focus:outline-none focus:ring-0 border-none leading-none truncate"
+                className="w-full bg-transparent p-0 text-[12.5px] sm:text-[13px] text-[#181613] placeholder:text-[#9c9389] focus:outline-none focus:ring-0 border-none leading-tight truncate"
                 {...props}
               />
             )}
           </div>
         </div>
 
-        {/* Inline Error Message */}
         {error && (
-          <p id={errorId} role="alert" className="mt-0.5 pl-3 text-[10px] font-medium text-destructive leading-tight">
+          <p id={errorId} role="alert" className="mt-1 pl-3 text-[11px] font-medium text-destructive leading-tight">
             {error}
           </p>
         )}

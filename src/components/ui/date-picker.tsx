@@ -129,31 +129,29 @@ export function DatePicker({
           aria-describedby={errorId}
           onClick={toggle}
           className={cn(
-            'group relative flex h-[50px] sm:h-[52px] w-full items-center gap-3 rounded-xl border bg-white/70 dark:bg-[#1f2d47]/70 px-3.5 py-1.5 text-left transition-all duration-200 backdrop-blur-sm shadow-xs cursor-pointer',
+            'group relative flex h-[50px] sm:h-[52px] w-full items-center gap-2.5 sm:gap-3 rounded-[12px] border bg-white/95 px-3 py-1.5 text-left transition-all duration-200 shadow-[0_2px_8px_rgba(100,70,40,0.04)] cursor-pointer',
             error
               ? 'border-destructive/80 ring-1 ring-destructive/40'
-              : 'border-[#ded8ce] dark:border-white/10 hover:border-[#c5a46d]/60 focus-visible:border-[#8b6a3e] focus-visible:ring-2 focus-visible:ring-[#8b6a3e]/15',
-            open && 'border-[#8b6a3e] ring-2 ring-[#8b6a3e]/15',
+              : 'border-[#e8dcc8] hover:border-[#c49a60] focus-visible:border-[#8b5a2b] focus-visible:ring-2 focus-visible:ring-[#8b5a2b]/15',
+            open && 'border-[#8b5a2b] ring-2 ring-[#8b5a2b]/15',
             triggerClassName,
           )}
         >
           {Icon && (
-            <div className="flex h-8 w-8 sm:h-[34px] sm:w-[34px] shrink-0 items-center justify-center rounded-lg bg-[#f5efe4] dark:bg-[#16233d] text-[#171513] dark:text-[#f7f3ec] transition-transform duration-200 group-hover:scale-105">
-              <Icon className="h-4 w-4 stroke-[1.5] opacity-80" aria-hidden="true" />
+            <div className="flex h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] shrink-0 items-center justify-center rounded-[8px] bg-[#f4ebe0] text-[#221b14] transition-transform duration-200 group-hover:scale-105">
+              <Icon className="h-[17px] w-[17px] sm:h-[18px] sm:w-[18px]" strokeWidth={1.9} aria-hidden="true" />
             </div>
           )}
           <div className="flex flex-1 flex-col justify-center min-w-0 text-left overflow-hidden">
             {label && (
-              <span className="text-[11px] sm:text-[12px] font-semibold text-[#161616] dark:text-[#f7f3ec] leading-none mb-0.5 select-none truncate">
+              <span className="text-[11px] font-semibold text-[#181613] leading-none mb-[2px] select-none truncate">
                 {label}
               </span>
             )}
             <span
               className={cn(
-                'text-xs sm:text-[13px] leading-none truncate select-none',
-                !selected
-                  ? 'text-[#858585] dark:text-[#8c857b]'
-                  : 'text-[#161616] dark:text-[#f7f3ec]',
+                'text-[12.5px] sm:text-[13px] leading-tight truncate select-none',
+                !selected ? 'text-[#9c9389]' : 'text-[#181613]',
               )}
             >
               {selected ? formatDisplay(value) : placeholder}
